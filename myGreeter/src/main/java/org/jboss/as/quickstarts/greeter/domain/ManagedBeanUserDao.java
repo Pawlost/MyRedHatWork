@@ -31,13 +31,14 @@ public class ManagedBeanUserDao implements UserDao {
     @Inject
     private UserTransaction utx;
 
-    public User getForUsername(String username) {
+    public User getForUser(String username, String password) {
         try {
             User user;
             try {
                 utx.begin();
-                Query query = entityManager.createQuery("select u from User u where u.username = :username");
+                Query query = entityManager.createQuery("select u from User u where u.username = :username and u.password = :password");
                 query.setParameter("username", username);
+                query.setParameter("password", password);
                 user = (User) query.getSingleResult();
             } catch (NoResultException e) {
                 user = null;

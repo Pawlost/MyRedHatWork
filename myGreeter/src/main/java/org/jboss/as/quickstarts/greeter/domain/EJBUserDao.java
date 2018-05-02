@@ -31,10 +31,11 @@ public class EJBUserDao implements UserDao {
     private EntityManager entityManager;
 
     @Override
-    public User getForUsername(String username) {
+    public User getForUser(String username, String password) {
         try {
-            Query query = entityManager.createQuery("select u from User u where u.username = :username");
+            Query query = entityManager.createQuery("select u from User u where u.username = :username and where u.password = :password");
             query.setParameter("username", username);
+            query.setParameter("password", password);
             return (User) query.getSingleResult();
         } catch (NoResultException e) {
             return null;
@@ -46,4 +47,5 @@ public class EJBUserDao implements UserDao {
         entityManager.persist(user);
     }
 
+    
 }

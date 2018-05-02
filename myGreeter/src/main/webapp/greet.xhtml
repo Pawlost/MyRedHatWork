@@ -30,6 +30,11 @@
                     value="#{greetController.username}" />
                 <h:message for="username" />
             </h:panelGrid>
+            <h:panelGrid columns="3">
+                <h:outputLabel for="password">Enter password:</h:outputLabel>
+                <h:inputSecret id="password" value="#{greetController.password}" />
+                <h:message for="password" />
+            </h:panelGrid>
             <h:commandButton id="greet" value="Greet!"
                 action="#{greetController.greet}" />
         </h:form>

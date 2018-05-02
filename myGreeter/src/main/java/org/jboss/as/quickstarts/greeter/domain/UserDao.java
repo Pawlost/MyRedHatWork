@@ -17,7 +17,7 @@
 package org.jboss.as.quickstarts.greeter.domain;
 
 public interface UserDao {
-    User getForUsername(String username);
+    User getForUser(String username, String password);
 
     void createUser(User user);
 }

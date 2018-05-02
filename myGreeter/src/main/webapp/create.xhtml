@@ -36,6 +36,10 @@
                 <h:outputLabel for="lastName">Enter last name:</h:outputLabel>
                 <h:inputText id="lastName" value="#{newUser.lastName}" />
                 <h:message for="lastName" />
+                
+                <h:outputLabel for="password">Enter password:</h:outputLabel>
+                <h:inputSecret id="password" value="#{newUser.password}" />
+                <h:message for="password" />
 
             </h:panelGrid>
             <h:commandButton action="#{createController.create}"
