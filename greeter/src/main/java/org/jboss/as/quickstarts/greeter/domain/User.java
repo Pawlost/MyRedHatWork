@@ -14,35 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.as.quickstarts.greeter.web;
+package org.jboss.as.quickstarts.greeter.domain;
 
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import org.jboss.as.quickstarts.greeter.domain.User;
-import org.jboss.as.quickstarts.greeter.domain.UserDao;
+@Entity
+// User is a keyword in some SQL dialects!
+@Table(name = "Users")
+public class User {
 
-@Named
-@RequestScoped
-public class GreetController {
+    @Id
+    @GeneratedValue
+    private Long id;
 
-    @Inject
-    private UserDao userDao;
-
+    @Column(unique = true)
     private String username;
-   
-    private String password;
 
-    private String greeting;
+    private String firstName;
 
-    public void greet() {
-        User user = userDao.getForUser(username, password);
-        if (user != null) {
-            greeting = "Hello, " + user.getFirstName() + " " + user.getLastName() + "!";
-        } else {
-            greeting = "Wrong username or password!";
-        }
+    private String lastName;
+
+    public Long getId() {
+        return id;
     }
 
     public String getUsername() {
@@ -52,17 +49,21 @@ public class GreetController {
     public void setUsername(String username) {
         this.username = username;
     }
-    
-    public String getPassword() {
-        return password;
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getGreeting() {
-        return greeting;
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
 }
