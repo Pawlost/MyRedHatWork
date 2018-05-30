@@ -1,0 +1,14 @@
+@charset "UTF-8";
+body{
+	text-align: center;
+}
+#content{
+	margin: 0 auto;
+	display: flex;
+	margin: 1%;
+	justify-content: center;
+}
+tbody{
+	margin: 0 auto;
+	display: flow
+}

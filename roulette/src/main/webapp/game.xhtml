@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core">
+    
+<ui:composition template="template.xhtml">
+	
+	<ui:define name="money">
+		<h:outputLabel>#{gameCreator.getMoney()}</h:outputLabel>
+	</ui:define>
+	
+	<ui:define name="message">
+		<h:outputText value="Vyhrál jsi"/>
+	</ui:define>
+	
+	<ui:define name="content">
+	 <button >Smazat poslední číslo (Dáš 10000 peněz)</button>
+		<ui:repeat value="#{gameCreator.getObject()}" var="bet" >
+           		<h:panelGrid id="1" styleClass="grid" border="1" columns="1">
+           			<h:outputLabel> #{bet.getOrder()}</h:outputLabel>
+           			<h:outputLabel>Kolik chceš vsadit?</h:outputLabel>
+               		<h:inputText id="1"/>
+               		<button id="1" >Vsaď</button>
+            	</h:panelGrid>
+        </ui:repeat>
+        <button >Vytvořit nové číslo (Získáš 500 peněz)</button>
+	</ui:define>
+	
+	<ui:define name="end">
+	 <button >Ukončit sázky</button>
+	</ui:define>
+	
+</ui:composition>
+</html>
