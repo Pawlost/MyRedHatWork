@@ -7,28 +7,49 @@
 <ui:composition template="template.xhtml">
 	
 	<ui:define name="money">
-		<h:outputLabel>#{gameCreator.getMoney()}</h:outputLabel>
+		<h:form>
+		<div id="context">
+					<h:panelGrid columns="1">
+				<h:outputText value="#{gameCreator.money} "/>
+				<h:outputText value="#{gameCreator.draws}"/>
+				<h:outputText value="#{gameCreator.hasBet} "/>
+			</h:panelGrid>
+		</div>
+		</h:form>
 	</ui:define>
 	
-	<ui:define name="message">
-		<h:outputText value="Vyhrál jsi"/>
+	<ui:define name="message">	
+		<h:form>
+		<div id="context">
+	 		<h:messages />
+			<h:outputText id="output" value="#{gameCreator.message}" rendered="#{not empty gameCreator.message}"/>
+		</div>
+		</h:form>
 	</ui:define>
 	
 	<ui:define name="content">
-	 <button >Smazat poslední číslo (Dáš 10000 peněz)</button>
-		<ui:repeat value="#{gameCreator.getObject()}" var="bet" >
-           		<h:panelGrid id="1" styleClass="grid" border="1" columns="1">
-           			<h:outputLabel> #{bet.getOrder()}</h:outputLabel>
-           			<h:outputLabel>Kolik chceš vsadit?</h:outputLabel>
-               		<h:inputText id="1"/>
-               		<button id="1" >Vsaď</button>
-            	</h:panelGrid>
-        </ui:repeat>
-        <button >Vytvořit nové číslo (Získáš 500 peněz)</button>
+	<h:form>
+	<div id="context">
+		<h:commandButton value="Smazat poslední číslo &#13; (Dáš 10000 peněz)" action="#{gameCreator.destroyBetButton}"/>
+			<ui:repeat value="#{gameCreator.bets}" var="bet" >
+           			<h:panelGrid border="1" columns="1">
+						<ui:param name="index" value="#{bet.order}"/> 
+           				<h:outputLabel> #{bet.order}</h:outputLabel>
+           				<h:outputLabel>Kolik chceš vsadit?</h:outputLabel>
+           				<h:outputText value="Odměna je #{bet.reward} peněz"/>
+           				<h:inputText binding="#{input}"/>
+               			<h:commandButton value="Vsadit" action="#{gameCreator.betButton(input.value, index)}"/>
+            		</h:panelGrid>
+     		</ui:repeat>
+		<h:commandButton value="Vytvořit nové číslo &#13; (Získáš 500 peněz)" action="#{gameCreator.addBetButton}"/>
+	</div>
+	</h:form>
 	</ui:define>
 	
 	<ui:define name="end">
-	 <button >Ukončit sázky</button>
+		<h:form>
+			<h:commandButton value="Začít hru" action="#{gameCreator.game()}"/>
+		</h:form>
 	</ui:define>
 	
 </ui:composition>
