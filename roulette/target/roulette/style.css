@@ -1,9 +1,11 @@
 @charset "UTF-8";
 #context{
-	margin: 0 auto;
 	display: flex;
-	margin: 1%;
+	margin: 1% auto;
 	justify-content: center;
+}
+#context2{
+	text-align: left;
 }
 
 body{

@@ -12,12 +12,13 @@ public class BetObject {
 		this.orderNumber = orderNumber;
 	}
 	
-	public void bet(int moneyValue) {
+	public void setBet(int moneyValue) {
 		hasBet = true;
-		this.moneyValue = this.moneyValue + moneyValue;
+		this.moneyValue = this.moneyValue * moneyValue;
 	}
 	
 	public void setReward(int newReward) {
+		hasBet=false;
 		this.moneyValue = newReward;
 	}
 	
@@ -31,5 +32,13 @@ public class BetObject {
 	
 	public boolean isBet() {
 		return hasBet;
+	}
+	
+	public String showBet() {
+		if(hasBet) {
+			return "Máš vsazeno";
+		}else {
+			return "Nemáš vsazeno";
+		}
 	}
 }

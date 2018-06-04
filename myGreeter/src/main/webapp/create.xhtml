@@ -24,6 +24,7 @@
     <ui:define name="content">
         <h:messages />
         <h:form>
+        
             <h:panelGrid columns="3">
                 <h:outputLabel for="username">Enter username:</h:outputLabel>
                 <h:inputText id="username" value="#{newUser.username}" />
@@ -44,6 +45,7 @@
             </h:panelGrid>
             <h:commandButton action="#{createController.create}"
                 value="Add User" />
+                
         </h:form>
         <h:link outcome="/greet.xhtml">Greet a user!</h:link>
     </ui:define>
