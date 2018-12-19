@@ -1,36 +1,40 @@
 package myProjects.Redhat.JUnitTest;
 
+import org.junit.Before;
+import org.junit.Test;
+
 import java.util.Scanner;
 
 public class Matches {
 
-    private static int pocetSirek;
-    private static Scanner sc = new Scanner(System.in);
+    private Scanner sc;
+    private int pocetSirek = 10;
 
-    public static void main(String[] args) {
-        System.out.println("Napis pocet sirek");
-        pocetSirek = sc.nextInt();
+    public Matches(int pocetSirek, String hra){
+        sc = new Scanner(System.in);
+        System.out.println("Napis pocet sirek: ");
+        this.pocetSirek = pocetSirek;
         System.out.println("Hra pro 2 hrace (a/n): ");
-        if(sc.next().equals("a"))
-        {
+
+        if (hra.equals("a")) {
             hra();
-        }else{
+        } else {
             AIHra();
         }
     }
 
-    private static void hra(){
+    private void hra() {
         String hrac = "A";
-        while (pocetSirek > 1){
+        while (pocetSirek > 1) {
             System.out.println("Hraje hrac A");
             ukazSirky();
             pocetSirek -= zkontrolujInput();
-            if(pocetSirek > 1) {
+            if (pocetSirek > 1) {
                 System.out.println("Hraje hrac B");
                 ukazSirky();
                 pocetSirek -= zkontrolujInput();
                 hrac = "A";
-            }else {
+            } else {
                 hrac = "B";
             }
         }
@@ -38,43 +42,44 @@ public class Matches {
         ukazSirky();
     }
 
-    private static void AIHra(){
+    private void AIHra() {
         String hrac = "A";
-        while (pocetSirek > 1){
+        while (pocetSirek > 1) {
             System.out.println("Hraje hrac A");
             ukazSirky();
             pocetSirek -= zkontrolujInput();
-            if(pocetSirek > 1) {
+            if (pocetSirek > 1) {
                 System.out.println("Hraje hrac AI");
                 ukazSirky();
                 pocetSirek -= AI();
                 hrac = "A";
-            }else {
+            } else {
                 hrac = "B";
             }
         }
         System.out.println("Prohral hrac " + hrac);
         ukazSirky();
     }
-    private static int AI(){
-        if(pocetSirek - 3 > 5){
+
+    private int AI() {
+        if (pocetSirek - 3 > 5) {
             return 3;
-        }else if(pocetSirek - 2 > 4){
+        } else if (pocetSirek - 2 > 4) {
             return 2;
         }
         return 1;
     }
 
-    private static void ukazSirky(){
-        for (int i =0; i < pocetSirek; i++){
+    private void ukazSirky() {
+        for (int i = 0; i < pocetSirek; i++) {
             System.out.print("I");
         }
         System.out.print("\n");
     }
 
-    private static int zkontrolujInput(){
+    private int zkontrolujInput() {
         int vystup = sc.nextInt();
-        if(vystup <= 3){
+        if (vystup <= 3) {
             return vystup;
         }
         System.out.println("Zadal jsi moc ztracis kolo");
